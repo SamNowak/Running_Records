@@ -1,0 +1,23 @@
+CRECREATE TABLE athlete
+(a_id NUMBER(6),
+ f_name VARCHAR2(30),
+ l_name VARCHAR(30),
+ gender VARCHAR2(1),
+ CONSTRAINT athlete_a_id_pk PRIMARY KEY(a_id));
+
+CREATE TABLE record
+(r_id NUMBER(6),
+ event VARCHAR2(30),
+ CONSTRAINT record_r_id_pk PRIMARY KEY (r_id));
+
+
+CREATE TABLE race_record
+(grade_year VARCHAR2(30),
+ date VARCHAR2(30),
+ location VARCHAR2(30),
+ time numeric(7),
+ r_id NUMBER(6),
+ a_id NUMBER(6),
+ PRIMARY KEY (r_id, a_id),
+ CONSTRAINT race_record_r_id_fk FOREIGN KEY(r_id) REFERENCES record(r_id),
+ CONSTRAINT race_record_a_id_fk FOREIGN KEY(a_id) REFERENCES athlete(a_id));
